@@ -191,6 +191,76 @@
 		</operations>
 		</match>	
 	  </li>
-	</operations>	
+	  
+	  <li Class="PatchOperationFindMod">	
+		<mods><li>Dragonian Prime Race</li></mods>	
+		<match Class="PatchOperationSequence">
+		<operations>
+			<!--Supposed to be quite deadly to soft targets, weak to heavy armour. feel free to tweak-->
+			<li Class="PatchOperationReplace">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_Drakesclaw"]/tools</xpath>
+				<value>
+					<tools>
+						<li Class="CombatExtended.ToolCE">
+							<label>tip</label>
+							<capacities>
+								<li>Stab</li>
+							</capacities>
+							<power>20</power>
+							<cooldownTime>1.1</cooldownTime>
+							<chanceFactor>0.50</chanceFactor>
+							<armorPenetrationSharp>7</armorPenetrationSharp>
+						</li>
+						<li Class="CombatExtended.ToolCE">
+							<label>blade</label>
+							<capacities>
+							<li>Cut</li>
+							</capacities>
+							<power>20</power>					
+							<cooldownTime>1.1</cooldownTime>
+							<armorPenetrationSharp>7</armorPenetrationSharp>
+							<chanceFactor>0.50</chanceFactor>
+						</li>				
+					</tools>
+				</value>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_Drakesclaw"]/statBases</xpath>
+				<value>
+					<Bulk>2</Bulk>
+					<MeleeCounterParryBonus>0.30</MeleeCounterParryBonus>
+				</value>
+			</li>
+
+			<li Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<li Class="PatchOperationTest">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_Drakesclaw"]/equippedStatOffsets</xpath>
+				<success>Invert</success>
+				</li>
+				<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_Drakesclaw"]</xpath>
+				<value>
+					<equippedStatOffsets />
+				</value>
+				</li>
+			</operations>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/ThingDef[defName="MeleeWeapon_Drakesclaw"]/equippedStatOffsets</xpath>
+				<value>
+					<MeleeCritChance>1.00</MeleeCritChance>
+					<MeleeParryChance>0.20</MeleeParryChance>
+					<MeleeDodgeChance>0.20</MeleeDodgeChance>	
+				</value>	
+			</li>
+			
+		</operations>
+		</match>	
+	  </li>
+	  </operations>
   </Operation>
 </Patch>
